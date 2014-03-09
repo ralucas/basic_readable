@@ -61,19 +61,19 @@ var readable = {
      * @param Element
      * @return string
     **/
-    getInnerText: function (e, normalizeSpaces) {
+    getInnerText: function (element, normalizeSpaces) {
         var textContent    = "";
 
-        if(typeof(e.textContent) === "undefined" && typeof(e.innerText) === "undefined") {
+        if(typeof( $(element).text() ) === "undefined" && typeof( $(element).text() ) === "undefined") {
             return "";
         }
 
         normalizeSpaces = (typeof normalizeSpaces === 'undefined') ? true : normalizeSpaces;
 
         if (navigator.appName === "Microsoft Internet Explorer") {
-            textContent = e.innerText.replace( readable.regexps.trim, "" ); }
+            textContent = $(element).text().replace( readable.regexps.trim, "" ); }
         else {
-            textContent = e.textContent.replace( readable.regexps.trim, "" ); }
+            textContent = $(element).text().replace( readable.regexps.trim, "" ); }
 
         if(normalizeSpaces) {
             return textContent.replace( readable.regexps.normalize, " "); }
@@ -446,7 +446,7 @@ var readable = {
         }
         // console.log('nta', nodesToAppend);
 
-        articleObject.htmlToDisplay = nodesToAppend[0].innerHTML;
+        articleObject.html = nodesToAppend[0].innerHTML;
         articleObject.page_text = nodesToAppend[0].innerText;
 
         // for(var j = 0; j < nodesToAppend.length; j++){
